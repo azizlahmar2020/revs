@@ -1,0 +1,31 @@
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    var socket = io();
+
+    // Listen for events
+    socket.on('connect', function(socket) {
+        console.log(socket)
+    });
+    socket.on("partie",data=>{
+        console.log(data)
+        document.getElementById('nom').innerHTML = data.nom;
+                document.getElementById('j1').innerHTML = data.joueur_1;
+
+        document.getElementById('j2').innerHTML = data.joueur_2;
+
+
+    })
+</script>
+
+<form action="/user/partie" method="post">
+    <label for="name">Name:</label><br>
+    <input type="text" id="name" name="nom"><br>
+    <label for="joueur_1">joueur1:</label><br>
+    <input type="text" id="joueur_1" name="joueur_1"><br>
+    <label for="joueur_2">joueur2:</label><br>
+    <input type="text" id="joueur_2" name="joueur_2"><br>
+    <input type="submit" value="Submit">
+    <div id="nom"></div>
+    <div id="j1"></div>
+    <div id="j2"></div>
+</form>
